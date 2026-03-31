@@ -24,7 +24,6 @@ class CarWashStation:
         self.count_of_ratings = count_of_ratings
 
     def calculate_washing_price(self, car: Car) -> float:
-        # формула: клас * різниця брудності * рейтинг / відстань
         dirt_difference = self.clean_power - car.clean_mark
         price = (
             car.comfort_class
@@ -35,7 +34,6 @@ class CarWashStation:
         return round(price, 1)
 
     def wash_single_car(self, car: Car) -> None:
-        # піднімаємо чистоту машини до рівня мийки
         if self.clean_power > car.clean_mark:
             car.clean_mark = self.clean_power
 
@@ -50,7 +48,6 @@ class CarWashStation:
         return round(total_income, 1)
 
     def rate_service(self, new_rate: float) -> None:
-        # нова середня = (стара сума + новий рейтинг) / нова кількість
         total = self.average_rating * self.count_of_ratings + new_rate
         self.count_of_ratings += 1
         self.average_rating = round(total / self.count_of_ratings, 1)
